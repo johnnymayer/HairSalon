@@ -6,7 +6,7 @@ using System;
 namespace HairSalon.Tests
 {
     [TestClass]
-    public class ClientTests : IDisposable
+    public class StylistTests : IDisposable
     {
         public void Dispose()
         {
@@ -14,20 +14,20 @@ namespace HairSalon.Tests
             Stylist.DeleteAll();
         }
 
-        public ClientTests()
+        public StylistTests()
         {
             DBConfiguration.ConnectionString = "server=localhost; user id=root; password=root; port=8889; database=johnny_mayer_test;";
         }
 
         [TestMethod]
-        public void GetClientName_ReturnsClientName_String()
+        public void GetStylistName_ReturnsStylistName_String()
         {
             //arrange
             string controlName = "Jane";
-            Client newClient = new Client("Jane");
+            Stylist newStylist = new Stylist("Jane");
 
             //act
-            string result = newClient.GetClientName();
+            string result = newStylist.GetStylistName();
 
             //assert
             Assert.AreEqual(result, controlName);
@@ -37,7 +37,7 @@ namespace HairSalon.Tests
         public void GetAll_DatabaseEmptyAtFirst_0()
         {
             //Arrange, act
-            int result = Client.GetAll().Count;
+            int result = Stylist.GetAllStylists().Count;
 
             //assert
             Assert.AreEqual(result, 0);

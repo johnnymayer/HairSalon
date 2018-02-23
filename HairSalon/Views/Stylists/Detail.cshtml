@@ -1,0 +1,30 @@
+<h1>@Model["stylists"].GetStylistName()</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Stylist</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach (var item in @Model["items"])
+  {
+    string display = "";
+    if (@client.GetClientName() != null)
+    {
+      display = @client.GetClientName();
+    }
+    else
+    {
+      display = "Client has no name.";
+    }
+    <tr>
+      <td>@client.GetClientName()</td>
+    </tr>
+  }
+  </tbody>
+</table>
+
+<p><a href='/clients/@Model["client"].GetClientId()/clients/new'>Add new client.</a></p>
+<p><a href="/">Return Home</a></p>
