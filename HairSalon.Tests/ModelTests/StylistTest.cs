@@ -20,27 +20,18 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void GetStylistName_ReturnsStylistName_String()
+        public void GetClients_RetrievesAllClientsWithStylistId_ClientList()
         {
-            //arrange
-            string controlName = "Jane";
-            Stylist newStylist = new Stylist("Jane");
+            Stylist testStylist = new Stylist("Jane", 1);
+            testStylist.Save();
 
-            //act
-            string result = newStylist.GetStylistName();
+            Client firstClient = new Client("Adam", 1, testStylist.GetStylistId());
+            Client secondClient = new Client("Paul", 2, testStylist.GetStylistId());
 
-            //assert
-            Assert.AreEqual(result, controlName);
-        }
+            List<Client> testClientList = new List<Client> {firstClient, secondClient};
+            List<Client> resultClientList = testStylist.GetClients();
 
-        [TestMethod]
-        public void GetAll_DatabaseEmptyAtFirst_0()
-        {
-            //Arrange, act
-            int result = Stylist.GetAllStylists().Count;
-
-            //assert
-            Assert.AreEqual(result, 0);
+            CollectionAssert.AreEqual(testClientList, resultClientList);
         }
     }
 }
