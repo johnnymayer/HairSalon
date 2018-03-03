@@ -19,22 +19,6 @@ namespace HairSalon.Tests
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=johnny_mayer_test;";
     }
 
-    [TestMethod]
-    public void GetClients_RetrievesAllClientsWithStylistId_ClientList()
-    {
-      Stylist testStylist = new Stylist("Jane", 1);
-      testStylist.Save();
-
-      Client firstClient = new Client("Adam", 1, testStylist.GetId());
-      firstClient.Save();
-      Client secondClient = new Client("Paul", 2, testStylist.GetId());
-      secondClient.Save();
-
-      List<Client> testClientList = new List<Client> {firstClient, secondClient};
-      List<Client> resultClientList = testStylist.GetClients();
-
-      CollectionAssert.AreEqual(testClientList, resultClientList);
-    }
 
     [TestMethod]
     public void GetAll_StylistsEmptyAtFirst_0()
@@ -44,6 +28,23 @@ namespace HairSalon.Tests
 
       //Assert
       Assert.AreEqual(0, result);
+    }
+
+    [TestMethod]
+    public void GetClients_RetrievesAllClientsWithStylistId_ClientList()
+    {
+        Stylist testStylist = new Stylist("Jane", 1);
+        testStylist.Save();
+
+        Client firstClient = new Client("Jill", 1, testStylist.GetId());
+        firstClient.Save();
+        Client secondClient = new Client("John", 2, testStylist.GetId());
+        secondClient.Save();
+
+        List<Client> testClientList = new List<Client> {firstClient, secondClient};
+        List<Client> resultClientList = testStylist.GetClients();
+
+        CollectionAssert.AreEqual(testClientList, resultClientList);
     }
 
     [TestMethod]
@@ -61,7 +62,7 @@ namespace HairSalon.Tests
     public void Save_SavesStylistToDatabase_StylistList()
     {
       //arrange
-      Stylist testStylist = new Stylist("Jane");
+      Stylist testStylist = new Stylist("Jane", 1);
       testStylist.Save();
 
       //act
@@ -87,66 +88,6 @@ namespace HairSalon.Tests
 
       //assert
       Assert.AreEqual(testId, result);
-    }
-
-    [TestMethod]
-    public void Find_FindsStylistInDatabase_Stylist()
-    {
-      //arrange
-      Stylist testStylist = new Stylist("Jane", 1);
-      testStylist.Save();
-
-      //act
-      Stylist foundStylist = Stylist.Find(testStylist.GetId());
-
-      //assert
-      Assert.AreEqual(testStylist, foundStylist);
-    }
-
-    [TestMethod]
-    public void Delete_DeleteStylistFromDatabase_Void()
-    {
-      //arrange
-      Stylist testStylist1 = new Stylist("Gina");
-      testStylist1.Save();
-      List<Stylist> originalList = Stylist.GetAll();
-      Stylist testStylist2 = new Stylist("Ruby");
-      testStylist2.Save();
-
-      //act
-      testStylist2.Delete();
-      List<Stylist> newList = Stylist.GetAll();
-
-      //assert
-      CollectionAssert.AreEqual(originalList, newList);
-    }
-
-    [TestMethod]
-    public void Delete_DeleteStylistANDClientsFromDB_Void()
-    {
-      //arrange
-      Stylist testStylist1 = new Stylist("Gina", 1);
-      testStylist1.Save();
-      Client testClient1 = new Client("Adam", 1, 1);
-      Client testClient2 = new Client("Paul", 2, 1);
-      testClient1.Save();
-      testClient2.Save();
-
-      Stylist testStylist2 = new Stylist("Ruby", 2);
-      testStylist2.Save();
-      Client testClient3 = new Client("Greg", 3, 2);
-      Client testClient4 = new Client("Dave", 4, 2);
-      testClient3.Save();
-      testClient4.Save();
-
-      int numExistingClientsControl = 2;
-
-      //act
-      testStylist1.Delete();
-      int result = Client.GetClients().Count;
-
-      //assert
-      Assert.AreEqual(numExistingClientsControl, result);
     }
   }
 }

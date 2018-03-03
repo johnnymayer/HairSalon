@@ -2,18 +2,15 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Stylist</th>
-      <th>View Clients</th>
-      <th>Delete</th>
+      <th>Stylists</th>
     </tr>
   </thead>
   <tbody>
   @foreach (var stylist in Model)
   {
     <tr>
-      <td>@stylist.GetStylistName()</td>
-      <td><a href="/stylists/@stylist.GetStylistId()"></a></td>
-      <td><a href="/stylists/@stylist.GetStylistId()/delete"></a></td>
+      <td>@stylist.GetName()</td>
+      <td><a href="/stylists/@stylist.GetId()">View Clients</a></td>
     </tr>
   }
   </tbody>
