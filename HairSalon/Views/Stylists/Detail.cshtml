@@ -1,11 +1,14 @@
-<h1>@Model["stylist"].GetName()</h1>
+@{
+  Layout = "_Layout";
+}
+
+<h1>@Model["stylist"].GetName()'s Clients</h1>
 <table class="table">
-  <thead>
-    <tr>
-      <th>Stylist: @Model["stylist"].GetName()</th>
-    </tr>
-  </thead>
   <tbody>
+  @if(@Model["clients"].Count <= 0)
+  {
+    <h2>@Model["stylist"].GetName() has no clients. Please add clients.</h2>
+  }
   @foreach (var client in @Model["clients"])
   {
     <tr>

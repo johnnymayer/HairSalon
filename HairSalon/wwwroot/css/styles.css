@@ -1,0 +1,59 @@
+html {
+  height: 100%;
+}
+
+body {
+  text-align: center;
+  background-image: url("../img/wizardBG.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+h1 {
+  font-size: 8vw;
+  color: #F6F0CE;
+  text-shadow: 1px 1px 25px #3F3E33, 0 0 25px #82806B, 0 0 25px #707330;
+}
+
+h2 {
+  font-size: 4vw;
+  color: #F6F0CE;
+  text-shadow: 1px 1px 25px #3F3E33, 0 0 25px #82806B, 0 0 25px #707330;
+}
+
+label {
+  font-size: 3vw;
+  color: #F6F0CE;
+  text-shadow: 1px 1px 25px #3F3E33, 0 0 25px #82806B, 0 0 25px #707330;
+}
+
+table {
+  text-align: center;
+  background-color: #3F3E33;
+  color: #F6F0CE;
+}
+
+a {
+  font-size: 2.5vw;
+  color: #F6F0CE;
+  color: #F6F0CE;
+  text-shadow: 1px 1px 25px #3F3E33, 0 0 25px #82806B, 0 0 25px #707330;
+}
+
+a:hover {
+  color: #82806B;
+  color: #F6F0CE;
+  text-shadow: 1px 1px 25px white, 0 0 25px white, 0 0 25px #707330;
+}
+
+.buttony {
+  background-color: #3F3E33;
+  color: #F6F0CE;
+}
+
+input[type="text"] {
+  color: #3F3E33;
+  background-color: #F6F0CE;
+}
